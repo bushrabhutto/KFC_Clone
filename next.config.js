@@ -4,11 +4,11 @@ const withFlowbiteReact = require("flowbite-react/plugin/nextjs");
 const nextConfig = {
   images: {
     domains: [
+      "encrypted-tbn0.gstatic.com",
+      "cdn.jsdelivr.net",
       "cdn-icons-png.flaticon.com",
       "www.kfcpakistan.com",
-      "static.kfc.com",
-      "encrypted-tbn0.gstatic.com",
-      // add any other domains you use for images
+      "upload.wikimedia.org",
     ],
   },
 };
