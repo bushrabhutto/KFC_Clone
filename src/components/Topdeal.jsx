@@ -1,12 +1,13 @@
+"use client"
 import React from 'react'
 import Image from 'next/image'
 import { Heart } from 'lucide-react'
-import { menuData } from '../components/data/data'
+import { menuData } from './data.js'
 
-const topDealIds = [26, 27, 28, 31] // Example: Crispy Duo Box, Xtreme Duo Box, Value Bucket, Family Festival 3
+const topDealIds = [26, 27, 28, 31] 
 
 const Topdeal = () => {
-  // Flatten all items and filter for top deals
+
   const allItems = menuData.flatMap(cat => cat.items)
   const topDeals = allItems.filter(item => topDealIds.includes(item.id))
 

@@ -2,7 +2,7 @@
 import React, { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { menuData } from '../components/data/data'
+import { menuData } from './data'
 
 const bestSellerIds = [3, 10, 11, 58]; // Example: Krunch Burger, Krunch Combo, Chicken & Chips, Hot Wings Bucket
 

@@ -1,11 +1,11 @@
 "use client"
 import React, { useState } from 'react'
 import Image from 'next/image'
-import Link from 'next/link'
+
 import Bestsell from './Bestsell'
 import Topdeal from './Topdeal'
 import { useRouter, useSearchParams } from 'next/navigation'
-import { menuData } from '../components/data/data'
+
 
 const categories = [
 	{

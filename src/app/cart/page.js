@@ -1,16 +1,18 @@
 "use client";
-import React from 'react'
-import { useCart } from "@/pages/context/Cart.jsx";
-import { Link, X } from 'lucide-react';
+
+import React from "react";
+import { useCart } from "../../context/Cart";
+import { X } from "lucide-react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export default function CartPage() {
-  const { cart, dispatch } = useCart(); // <-- Use the cart context
+  const { cart, dispatch } = useCart();
   const router = useRouter();
 
-  // Calculate total items and price
-  const totalItems = cart.reduce((sum, item) => sum + item.qty, 0);
-  const totalPrice = cart.reduce((sum, item) => sum + (item.price || 0) * item.qty, 0);
+  const totalItems = cart?.reduce((sum, item) => sum + item.qty, 0) || 0;
+  const totalPrice =
+    cart?.reduce((sum, item) => sum + (item.price || 0) * item.qty, 0) || 0;
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-black">
@@ -31,8 +33,10 @@ export default function CartPage() {
             </button>
           </div>
         </div>
+
         {/* Red line */}
         <div className="h-1 bg-red-600 w-full rounded-t-xl" />
+
         {/* Content */}
         <div className="flex flex-col items-center justify-center py-10 px-6">
           {cart.length === 0 ? (
@@ -46,21 +50,30 @@ export default function CartPage() {
                 You haven’t added any items in bucket yet
               </p>
               <Link
-                href="/explore-menu"/>
-                <button className="mt-4 bg-red-600 text-white px-6 py-2 rounded font-bold">
+                href="/explore-menu"
+                className="mt-4 inline-block bg-red-600 text-white px-6 py-2 rounded font-bold text-center"
+              >
                 EXPLORE MENU
-              </button>
+              </Link>
             </>
-            
           ) : (
             <ul className="w-full">
-              {cart.map(item => (
-                <li key={item.id} className="flex justify-between items-center mb-4 bg-[#222] p-3 rounded">
-                  <span className="text-white font-bold">{item.name} x {item.qty}</span>
+              {cart.map((item) => (
+                <li
+                  key={item.id}
+                  className="flex justify-between items-center mb-4 bg-[#222] p-3 rounded"
+                >
+                  <span className="text-white font-bold">
+                    {item.name} x {item.qty}
+                  </span>
                   <div className="flex items-center gap-2">
-                    <span className="text-white">Rs {item.price ? item.price * item.qty : 0}</span>
+                    <span className="text-white">
+                      Rs {item.price ? item.price * item.qty : 0}
+                    </span>
                     <button
-                      onClick={() => dispatch({ type: "DELETE", id: item.id })}
+                      onClick={() =>
+                        dispatch({ type: "DELETE", id: item.id })
+                      }
                       className="bg-red-600 text-white rounded px-2 py-1 text-xs"
                     >
                       Delete
@@ -71,21 +84,29 @@ export default function CartPage() {
             </ul>
           )}
         </div>
+
         {/* Footer */}
         <div className="flex items-center justify-between bg-gradient-to-r from-red-700 to-red-500 px-6 py-4 rounded-b-xl">
           <span className="text-white font-bold">
-            {totalItems} Item{totalItems !== 1 ? "s" : ""}&nbsp; | &nbsp;Rs {totalPrice}
+            {totalItems} Item{totalItems !== 1 ? "s" : ""} &nbsp;|&nbsp; Rs{" "}
+            {totalPrice}
           </span>
           <button className="flex items-center gap-2 bg-transparent text-white font-bold text-base">
             View Bucket
             <span className="bg-white rounded-full p-1 ml-2">
               <svg width="18" height="18" fill="none" viewBox="0 0 24 24">
-                <path d="M9 18l6-6-6-6" stroke="#dc2626" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                <path
+                  d="M9 18l6-6-6-6"
+                  stroke="#dc2626"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
               </svg>
             </span>
           </button>
         </div>
       </div>
     </div>
-  )
+  );
 }

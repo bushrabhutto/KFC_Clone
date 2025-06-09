@@ -1,9 +1,9 @@
 "use client"
 import React, { useState, useEffect } from 'react'
-import { menuData } from '../../components/data/data'
-import CartPage from '../cart/page'
-import MenuCards from '../../components/cards/card'
-import CardDetail from '../../components/cards/cardDetail'
+import { menuData } from '../../components/data.js'
+
+import MenuCards from '../../components/card'
+import CardDetail from '../../components/cardDetail'
 
 // Horizontal menu list for categories
 function MenuList({ categories, activeIndex, onSelect }) {
@@ -81,10 +81,7 @@ export default function ExploreMenu() {
             />
           )}
         </div>
-        {/* Right: Cart */}
-        <div>
-          <CartPage />
-        </div>
+      
       </div>
     </div>
   );

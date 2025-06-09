@@ -1,18 +1,17 @@
 "use client";
 import React from "react";
 import { Heart } from "lucide-react";
-import { menuData } from "../data/data";
+import { menuData } from "./data.js"
 import { useRouter } from "next/navigation";
-import { useCart } from "../../pages/context/Cart.jsx"; // <-- import useCart
+import { useCart } from "../context/Cart"; 
 
 export default function MenuCards({ items, onCardClick }) {
   const router = useRouter();
-  const { dispatch } = useCart(); // <-- get dispatch from cart context
+  const { dispatch } = useCart(); 
 
-  // If no items prop, fallback to all items from menuData
+
   const allItems = items && items.length > 0 ? items : menuData.flatMap(cat => cat.items);
 
-  // Handler for Add to Bucket button
   const handleAddToBucket = (item) => {
     dispatch({ type: "ADD", item }); // <-- add to cart
   };
@@ -25,7 +24,7 @@ export default function MenuCards({ items, onCardClick }) {
           className="relative bg-[#181313] rounded-2xl shadow-lg flex flex-col items-center p-6 cursor-pointer"
           onClick={() => onCardClick && onCardClick(item.id)}
         >
-          {/* Heart Icon */}
+        
           <button className="absolute top-4 right-4">
             <Heart size={24} color="#dc2626" fill="none" />
           </button>

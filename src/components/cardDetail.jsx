@@ -1,6 +1,6 @@
 "use client"
 import React from "react";
-import { menuData } from "../data/data";
+import { menuData } from "./data.js";
 
 // Find item by id from all categories
 function getItemById(id) {
